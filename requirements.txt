@@ -1,0 +1,11 @@
+jax~=0.2.21
+distrax~=0.1.0
+PyYAML~=6.0
+matplotlib~=3.4.3
+numpy~=1.23.1
+scipy~=1.10.1
+setuptools~=65.6.3
+argparse~=1.4.0
+scikit-learn~=1.0.1
+pytest~=6.2.5
+GPy~=1.10.0
