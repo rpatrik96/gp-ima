@@ -63,15 +63,15 @@ jobs:
 
     - name: black
       run: |
-        black --check --verbose ./state_space_models/
+        black --check --verbose ./gp_ima/
 
     - name: mypy
       run: |
-        mypy state_space_models --ignore-missing-imports --scripts-are-modules
+        mypy gp_ima --ignore-missing-imports --scripts-are-modules
 
     - name: Tests
       run: |
-        coverage run --source state_space_models -m pytest tests -v --junitxml=junit/test-results-${{ runner.os }}-${{ matrix.python-version }}.xml
+        coverage run --source gp_ima -m pytest tests -v --junitxml=junit/test-results-${{ runner.os }}-${{ matrix.python-version }}.xml
 
     - name: Statistics
       if: success()
