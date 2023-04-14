@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.special import digamma
+import GPy
 
 
 def C_ima_digamma(d, D):
@@ -9,7 +10,10 @@ def C_ima_digamma(d, D):
 
 
 def C_ima_sample(gplvm):
-    z = np.random.normal(gplvm.X.mean, gplvm.X.variance**0.5)
+    if type(gplvm) is GPy.models.GPLVM:
+        z = gplvm.X
+    elif type(gplvm) is GPy.models.BayesianGPLVM:
+        z = np.random.normal(gplvm.X.mean, gplvm.X.variance**0.5)
     dmu_dX, dv_dX = gplvm.predict_jacobian(z)  # this seems to be latents * data dim
     dv_dX[dv_dX <= 0] = 1e-6
     jacobian_sample = np.random.normal(dmu_dX, dv_dX**0.5)
