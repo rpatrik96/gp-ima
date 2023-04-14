@@ -18,4 +18,5 @@ repos:
         types_or: [ python, pyi ]
         language: python
         language_version: python3.9
+        files: gp_ima
         args: [ "--ignore-missing-imports", "--scripts-are-modules" ]
