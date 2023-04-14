@@ -4,6 +4,9 @@ METRIC_EPS = 1e-6
 
 from matplotlib import rc
 
+import jax
+from jax import numpy as jnp
+
 
 def plot_typography(
     usetex: bool = False, small: int = 16, medium: int = 20, big: int = 22
@@ -34,3 +37,15 @@ def plot_typography(
     rc("ytick", labelsize=small)  # fontsize of the tick labels
     rc("legend", fontsize=small)  # legend fontsize
     rc("figure", titlesize=big)  # fontsize of the figure title
+
+
+def estimate2uniform(latent_est):
+    latent_est_uni = jnp.column_stack(
+        [
+            jax.scipy.stats.logistic.cdf(latent_est[:, 0]),
+            jax.scipy.stats.logistic.cdf(latent_est[:, 1]),
+        ]
+    )
+    latent_est_uni -= 0.5
+
+    return latent_est_uni
