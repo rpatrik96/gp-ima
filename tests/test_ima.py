@@ -3,10 +3,6 @@ import GPy
 import numpy as np
 
 
-def test_dummy():
-    pass
-
-
 def test_C_ima_sample():
     X = np.random.randn(10, 2)
     kernel = GPy.kern.RBF(2, ARD=False) + GPy.kern.Bias(2)
