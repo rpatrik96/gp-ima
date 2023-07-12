@@ -7,11 +7,21 @@ import numpy as np
 from jax import numpy as jnp
 from matplotlib import rc
 from scipy.stats import ortho_group
-import scipy as sp
-
 
 from ima.ima.mixing_functions import build_moebius_transform
 from ima.ima.plotting import cart2pol
+
+
+def format_violin(vp, facecolor=BLUE):
+    for el in vp["bodies"]:
+        el.set_facecolor(facecolor)
+        el.set_edgecolor("black")
+        el.set_linewidth(0.75)
+        el.set_alpha(0.9)
+    for pn in ["cbars", "cmins", "cmaxes", "cmedians"]:
+        vp_ = vp[pn]
+        vp_.set_edgecolor("black")
+        vp_.set_linewidth(0.5)
 
 
 def plot_typography(
@@ -68,7 +78,7 @@ def generate_moebius_data(num_data, latent_dim, obs_dim, alpha=1.0, epsilon=2):
     a = []
     while len(a) < obs_dim:
         s = np.random.randn()
-        if np.abs(s) > 1.6:
+        if np.abs(s) > 2.6:
             a = a + [s]
     a = jax.numpy.array(a)
     b = jax.numpy.zeros(obs_dim)
@@ -82,7 +92,6 @@ def generate_moebius_data(num_data, latent_dim, obs_dim, alpha=1.0, epsilon=2):
 
 import numpy as np
 import scipy
-import torch
 
 """
 Code for MCC taken from the TCL Repo
@@ -107,6 +116,7 @@ __author__ = "Brian Clapper, bmc@clapper.org"
 __url__ = "http://software.clapper.org/munkres/"
 __copyright__ = "(c) 2008 Brian M. Clapper"
 __license__ = "Apache Software License"
+
 
 # ---------------------------------------------------------------------------
 # Classes
