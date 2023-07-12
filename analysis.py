@@ -56,11 +56,9 @@ def plot_typography(
 
 
 def estimate2uniform(latent_est):
+    dim = latent_est.shape[1]
     latent_est_uni = jnp.column_stack(
-        [
-            jax.scipy.stats.logistic.cdf(latent_est[:, 0]),
-            jax.scipy.stats.logistic.cdf(latent_est[:, 1]),
-        ]
+        [jax.scipy.stats.logistic.cdf(latent_est[:, i]) for i in range(dim)]
     )
     latent_est_uni -= 0.5
 
@@ -570,61 +568,18 @@ def correlation(x, y, method="Pearson"):
     return corr_sort, sort_idx, x_sort
 
 
-def _log_mcc(
+def calc_mcc(
     estimated_factors,
     sources,
     spearman: bool = False,
-    cdf: bool = False,
 ):
-    s = sources.permute(1, 0).cpu().numpy()
-    s_hat = estimated_factors.permute(1, 0).cpu().numpy()
+    s = sources.T
+    s_hat = estimated_factors.T
     mat, _, _ = correlation(
         s,
         s_hat,
         method="Pearson",
     )
     mcc = np.mean(np.abs(np.diag(mat)))
-
-    if spearman is True:
-        mat, _, _ = correlation(
-            s,
-            s_hat,
-            method="Spearman",
-        )
-        mcc = np.mean(np.abs(np.diag(mat)))
-
-    # if cdf is True:
-    #     if (
-    #         source_pdf := self.trainer.datamodule.hparams.synth_source
-    #     ) != self.model.prior.name:
-    #         if source_pdf == "uniform":
-    #             if self.hparams.prior == "gaussian":
-    #                 if self.hparams.fix_prior is True:
-    #                     s_hat_cdf = (
-    #                         torch.distributions.Normal(
-    #                             self.hparams.prior_mean,
-    #                             np.sqrt(self.hparams.prior_var),
-    #                         )
-    #                         .cdf(estimated_factors)
-    #                         .permute(1, 0)
-    #                         .cpu()
-    #                         .numpy()
-    #                     )
-    #
-    #                     mat, _, _ = correlation(
-    #                         s,
-    #                         s_hat_cdf,
-    #                         method="Pearson",
-    #                     )
-    #                     mcc = np.mean(np.abs(np.diag(mat)))
-    #
-    #
-    #                     if spearman is True:
-    #                         mat, _, _ = correlation(
-    #                             s,
-    #                             s_hat_cdf,
-    #                             method="Spearman",
-    #                         )
-    #                         mcc = np.mean(np.abs(np.diag(mat)))
 
     return mcc
