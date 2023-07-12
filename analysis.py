@@ -68,7 +68,7 @@ def generate_moebius_data(num_data, latent_dim, obs_dim, alpha=1.0, epsilon=2):
     a = []
     while len(a) < obs_dim:
         s = np.random.randn()
-        if np.abs(s) > 0.5:
+        if np.abs(s) > 1.6:
             a = a + [s]
     a = jax.numpy.array(a)
     b = jax.numpy.zeros(obs_dim)
