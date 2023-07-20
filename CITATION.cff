@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Reizinger"
+  given-names: "Patrik"
+  orcid: "https://orcid.org/0000-0001-9861-0293"
+- family-names: "Li"
+  given-names: "Han-Bo"
+- family-names: "Ravuri"
+  given-names: "Aditya"
+- family-names: "Huszár"
+  given-names: "Ferenc"
+  orcid: "https://orcid.org/0000-0002-4988-1430"
+- family-names: "Lawrence"
+  given-names: "Neil"
+  orcid: "https://orcid.org/0000-0001-9258-1030"
+title: "gp-ima"
+version: 1.0.0
+doi: 
+date-released: 2023-07-20
+url: "https://github.com/rpatrik96/gp-ima"
