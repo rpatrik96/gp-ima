@@ -2,7 +2,7 @@
 
 <div align="center">    
  
-# Independent mechnisms in GPLVMs
+# Independent mechanisms in GPLVMs
 
 <!--  
 [//]: # ([![Paper]&#40;http://img.shields.io/badge/paper-arxiv.2206.02416-B31B1B.svg&#41;]&#40;https://arxiv.org/abs/2206.02416&#41;)
@@ -15,6 +15,7 @@
 
 [![Paper](http://img.shields.io/badge/arxiv-stat.ML:2206.02416-B31B1B.svg)](https://arxiv.org/abs/2206.02416)
 -->  
+[![Conference](http://img.shields.io/badge/AABI-2023.svg)](https://openreview.net/forum?id=WgK0RYP-6H)
 
 ![CI testing](https://github.com/rpatrik96/gp-ima/workflows/CI%20testing/badge.svg?branch=main&event=push)
 
@@ -28,7 +29,7 @@ Conference
 </div>
  
 ## Description   
-
+We show that most common kernel choices in GPLVM restrict the functions (even in the prior) to the IMA class [(Gresele et al., 2021)](https://proceedings.neurips.cc/paper_files/paper/2021/hash/edc27f139c3b4e4bb29d1cdbc45663f9-Abstract.html), which shows that IMA is more prevalent in variational inference, even beyond VAEs [(Reizinger et al., 2022)](https://proceedings.neurips.cc/paper_files/paper/2022/hash/4eb91efe090f72f7cf42c69aab03fe85-Abstract-Conference.html).
 
 ## How to run   
 First, install dependencies   
@@ -57,7 +58,13 @@ pre-commit install
 
 ```
 
-@article{
+@inproceedings{
+reizinger2023independent,
+title={Independent Mechanism Analysis in {GPLVM}s},
+author={Patrik Reizinger and Han-Bo Li and Aditya Ravuri and Ferenc Husz{\'a}r and Neil D Lawrence},
+booktitle={Fifth Symposium on Advances in Approximate Bayesian Inference},
+year={2023},
+url={https://openreview.net/forum?id=WgK0RYP-6H}
 }
 
 ```   
